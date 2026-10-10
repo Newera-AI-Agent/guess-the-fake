@@ -1,8 +1,9 @@
 # Guess the Fake — Pollinations quest #15725 game
 
-- [~] Dispatch VM agent with complete build brief (public repo, subdomain guessthefake)
-- [ ] VM scaffolds Next.js App Router game, sources 10 images (5 real PD + 5 Pollinations AI), implements timed guess gameplay
-- [ ] VM runs unit tests and production static-export build until green
-- [ ] Collect VM package into project VFS and verify source tree landed
-- [ ] Deploy verified build to Cloudflare Pages at newera-guessthefake.pages.dev
-- [ ] Deliver repo URL, live playable URL, and Vercel hosting instructions
+- [x] Dispatch VM agent with complete build brief (public repo, subdomain guessthefake)
+- [x] First VM pass landed source but shipped broken code: no type-check, dead gameplay, fictional-API tests
+- [x] Push collected source, reproduce real CI failure, and dispatch repair VM (which timed out with only the CSS fix landed)
+- [~] Repair source locally: coherent GameState (timeLimit/aiIndex/isCorrect/pointsEarned/lastResult/rounds), deterministic seeded rounds, startGame, real countdown
+- [ ] Rewrite UI (preload, progress bar, keyboard, share, best score) and tests against the real API; add CREDITS.md + README attribution
+- [ ] static_check, push, watch CI build green
+- [ ] Deploy to Cloudflare Pages at newera-guessthefake.pages.dev and deliver repo + live URL

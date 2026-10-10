@@ -30,7 +30,7 @@ Scripts: `dev`, `build`, `start`, `lint`, `test`, `test:watch`
 ### `postcss.config.js` - 7 lines
 - exports: (nothing public)
 
-### `src/app/globals.css` - 117 lines
+### `src/app/globals.css` - 120 lines
 - exports: (nothing public)
 
 ### `src/app/layout.tsx` - 37 lines
@@ -40,12 +40,12 @@ Scripts: `dev`, `build`, `start`, `lint`, `test`, `test:watch`
 - `viewport` (const): initialScale, maximumScale, themeColor, width
 - default export: `RootLayout`
 
-### `src/app/page.tsx` - 10 lines
+### `src/app/page.tsx` - 6 lines
 - imports: `src/components/Game.tsx`
 - `Home` (function)
 - default export: `Home`
 
-### `src/components/Game.tsx` - 229 lines
+### `src/components/Game.tsx` - 467 lines
 - imports: `src/components/Providers.tsx`, `src/lib/game-logic.ts`
 - `Game` (function)
 - default export: `Game`
@@ -57,29 +57,40 @@ Scripts: `dev`, `build`, `start`, `lint`, `test`, `test:watch`
 - `useAnnouncer` (function)
 - `GameProviders` (function)
 
-### `src/lib/game-logic.test.ts` - 597 lines
+### `src/lib/game-logic.test.ts` - 468 lines
 - imports: `src/lib/game-logic.ts`
 - exports: (nothing public)
 
-### `src/lib/game-logic.ts` - 307 lines
+### `src/lib/game-logic.ts` - 373 lines
 - `GameImage` (interface): credit, id, prompt, src, type
 - `RoundData` (interface): aiIndex, images, roundNumber, timeLimit
-- `GameState` (interface): correctCount, currentRound, currentRoundData, isGuessLocked, longestStreak, playerGuess, roundResults, score, showAnswer, status, streak, timeRemaining, totalRounds
 - `RoundResult` (interface): aiIndex, isCorrect, playerGuess, pointsEarned, roundNumber, streakAtRound, timeRemaining
+- `GameState` (interface): aiIndex, correctCount, currentRound, currentRoundData, isCorrect, isGuessLocked, lastResult, longestStreak, playerGuess, pointsEarned, roundResults, rounds, score, seed, showAnswer, status, streak, timeLimit, timeRemaining, totalRounds
 - `FinalResults` (interface): accuracy, correctCount, longestStreak, rank, roundResults, score, totalRounds
+- `createSeededRandom` (function)
 - `shuffleArray` (function)
 - `createRounds` (function)
 - `calculatePoints` (function)
+- `initializeGame` (function)
+- `startGame` (function)
+- `tick` (function)
 - `processGuess` (function)
 - `processTimeout` (function)
 - `nextRound` (function)
-- `initializeGame` (function)
 - `calculateFinalResults` (function)
 - `generateShareText` (function)
+- `loadBestScore` (function)
+- `saveBestScore` (function)
 - `GAME_IMAGES` (const)
+- `BASE_POINTS` (const)
+- `MAX_SPEED_BONUS` (const)
+- `STREAK_MULTIPLIER` (const)
 - `ImageType` (type)
 
 ### `tailwind.config.js` - 66 lines
+- exports: (nothing public)
+
+### `vitest.config.ts` - 16 lines
 - exports: (nothing public)
 
 ## Unresolved references
