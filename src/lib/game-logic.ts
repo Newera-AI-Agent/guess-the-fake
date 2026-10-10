@@ -86,7 +86,10 @@ export function shuffleArray<T>(array: T[], seed?: number): T[] {
   while (currentIndex !== 0) {
     randomIndex = Math.floor(random() * currentIndex)
     currentIndex--
-    [arr[currentIndex], arr[randomIndex]] = [arr[randomIndex], arr[currentIndex]]
+    // Traditional swap to avoid destructuring issues when indices are equal
+    const temp = arr[currentIndex]
+    arr[currentIndex] = arr[randomIndex]
+    arr[randomIndex] = temp
   }
 
   return arr

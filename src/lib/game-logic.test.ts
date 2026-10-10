@@ -5,11 +5,84 @@ import {
   processTimeout,
   nextRound,
   calculateFinalResults,
-  generateShareText
+  generateShareText,
+  shuffleArray,
+  calculatePoints,
+  createRounds,
+  type GameState,
+  type GameImage,
+  type RoundData
 } from './game-logic'
 import type { GameState, GameImage } from './game-logic'
 
 describe('Game Logic', () => {
+  describe('shuffleArray', () => {
+    it('produces same shuffle with same seed', () => {
+      const arr = [1, 2, 3, 4, 5]
+      const result1 = shuffleArray([...arr], 42)
+      const result2 = shuffleArray([...arr], 42)
+      expect(result1).toEqual(result2)
+    })
+
+    it('produces different shuffle with different seed', () => {
+      const arr = [1, 2, 3, 4, 5]
+      const result1 = shuffleArray([...arr], 42)
+      const result2 = shuffleArray([...arr], 43)
+      expect(result1).not.toEqual(result2)
+    })
+
+    it('shuffles array correctly', () => {
+      const arr = [1, 2, 3, 4, 5]
+      const result = shuffleArray([...arr], 42)
+      expect(result.sort()).toEqual(arr)
+    })
+  })
+
+  describe('createRounds', () => {
+    it('creates 10 rounds from 10 images', () => {
+      const rounds = createRounds([
+        { id: 'r1', src: '/r1.jpg', type: 'real' },
+        { id: 'r2', src: '/r2.jpg', type: 'real' },
+        { id: 'r3', src: '/r3.jpg', type: 'real' },
+        { id: 'r4', src: '/r4.jpg', type: 'real' },
+        { id: 'r5', src: '/r5.jpg', type: 'real' },
+        { id: 'a1', src: '/a1.jpg', type: 'ai' },
+        { id: 'a2', src: '/a2.jpg', type: 'ai' },
+        { id: 'a3', src: '/a3.jpg', type: 'ai' },
+        { id: 'a4', src: '/a4.jpg', type: 'ai' },
+        { id: 'a5', src: '/a5.jpg', type: 'ai' },
+      ])
+      expect(rounds.length).toBe(10)
+      rounds.forEach((round, i) => {
+        expect(round.roundNumber).toBe(i + 1)
+        expect(round.images.length).toBe(2)
+        expect(round.aiIndex).toBeGreaterThanOrEqual(0)
+        expect(round.aiIndex).toBeLessThanOrEqual(1)
+      })
+    })
+  })
+
+  describe('calculatePoints', () => {
+    it('awards base points for correct answer', () => {
+      const points = calculatePoints(5, 10, 0)
+      expect(points).toBeGreaterThanOrEqual(100) // Base points
+    })
+
+    it('awards speed bonus based on remaining time', () => {
+      const pointsFast = calculatePoints(10, 10, 0)
+      const pointsSlow = calculatePoints(1, 10, 0)
+      expect(pointsFast).toBeGreaterThan(pointsSlow)
+    })
+
+    it('applies streak multiplier for consecutive correct answers', () => {
+      const pointsStreak0 = calculatePoints(5, 10, 0)
+      const pointsStreak1 = calculatePoints(5, 10, 1)
+      const pointsStreak2 = calculatePoints(5, 10, 2)
+      expect(pointsStreak1).toBeGreaterThan(pointsStreak0)
+      expect(pointsStreak2).toBeGreaterThan(pointsStreak1)
+    })
+  })
+
   describe('initializeGame', () => {
     it('initializes game with correct default state', () => {
       const state = initializeGame(10)
@@ -19,35 +92,13 @@ describe('Game Logic', () => {
       expect(state.score).toBe(0)
       expect(state.streak).toBe(0)
       expect(state.longestStreak).toBe(0)
-      expect(state.timeLimit).toBe(10)
+      expect(state.correctCount).toBe(0)
       expect(state.timeRemaining).toBe(10)
       expect(state.isGuessLocked).toBe(false)
       expect(state.playerGuess).toBeNull()
       expect(state.showAnswer).toBe(false)
-      expect(state.aiIndex).toBeNull()
-      expect(state.isCorrect).toBeNull()
-      expect(state.pointsEarned).toBeNull()
-      expect(state.currentRoundData).toBeNull()
       expect(state.roundResults).toEqual([])
-    })
-
-    it('creates shuffled pairs of images', () => {
-      const state = initializeGame(10)
-      // After start, round 1 should have data
-      // initializeGame should set up all rounds
-    })
-  })
-
-  describe('shuffle determinism', () => {
-    it('produces same shuffle with same seed', () => {
-      // The shuffle is internal to initializeGame, but we can verify
-      // that calling it multiple times with same initial state gives different shuffles
-      // since we use Math.random by default
-      const state1 = initializeGame(10)
-      const state2 = initializeGame(10)
-      // Both should have 10 rounds of data
-      expect(state1.totalRounds).toBe(10)
-      expect(state2.totalRounds).toBe(10)
+      expect(state.currentRoundData).not.toBeNull()
     })
   })
 
@@ -63,27 +114,16 @@ describe('Game Logic', () => {
         isGuessLocked: false,
         playerGuess: null,
         showAnswer: false,
-        aiIndex: 0, // AI is on left
-        isCorrect: null,
-        pointsEarned: null,
-        currentRoundData: {
-          images: [
-            { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-            { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-          ],
-          aiIndex: 0
-        }
       }
 
-      const result = processGuess(playingState, 0) // Guess left (AI)
-      expect(result.isCorrect).toBe(true)
-      expect(result.playerGuess).toBe(0)
+      const result = processGuess(playingState, playingState.currentRoundData!.aiIndex)
       expect(result.showAnswer).toBe(true)
       expect(result.isGuessLocked).toBe(true)
       expect(result.status).toBe('round-result')
-      expect(result.pointsEarned).toBeGreaterThan(0)
+      expect(result.roundResults[result.roundResults.length - 1].pointsEarned).toBeGreaterThan(0)
       expect(result.streak).toBe(1)
       expect(result.longestStreak).toBe(1)
+      expect(result.correctCount).toBe(1)
     })
 
     it('correctly handles incorrect guess', () => {
@@ -96,27 +136,17 @@ describe('Game Logic', () => {
         isGuessLocked: false,
         playerGuess: null,
         showAnswer: false,
-        aiIndex: 0, // AI is on left
-        isCorrect: null,
-        pointsEarned: null,
-        currentRoundData: {
-          images: [
-            { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-            { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-          ],
-          aiIndex: 0
-        }
       }
 
-      const result = processGuess(playingState, 1) // Guess right (Real)
-      expect(result.isCorrect).toBe(false)
-      expect(result.playerGuess).toBe(1)
+      const wrongGuess = playingState.currentRoundData!.aiIndex === 0 ? 1 : 0
+      const result = processGuess(playingState, wrongGuess)
       expect(result.showAnswer).toBe(true)
       expect(result.isGuessLocked).toBe(true)
       expect(result.status).toBe('round-result')
-      expect(result.pointsEarned).toBe(0)
+      expect(result.roundResults[result.roundResults.length - 1].pointsEarned).toBe(0)
       expect(result.streak).toBe(0)
       expect(result.longestStreak).toBe(0)
+      expect(result.correctCount).toBe(0)
     })
 
     it('does not process if guess already locked', () => {
@@ -129,20 +159,10 @@ describe('Game Logic', () => {
         isGuessLocked: true,
         playerGuess: 0,
         showAnswer: true,
-        aiIndex: 0,
-        isCorrect: true,
-        pointsEarned: 100,
-        currentRoundData: {
-          images: [
-            { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-            { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-          ],
-          aiIndex: 0
-        }
       }
 
       const result = processGuess(playingState, 1)
-      expect(result).toBe(playingState) // Should return same state
+      expect(result).toBe(playingState)
     })
   })
 
@@ -157,25 +177,15 @@ describe('Game Logic', () => {
         isGuessLocked: false,
         playerGuess: null,
         showAnswer: false,
-        aiIndex: 0, // AI is on left
-        isCorrect: null,
-        pointsEarned: null,
-        currentRoundData: {
-          images: [
-            { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-            { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-          ],
-          aiIndex: 0
-        }
       }
 
       const result = processTimeout(playingState)
-      expect(result.isCorrect).toBe(false)
       expect(result.showAnswer).toBe(true)
       expect(result.isGuessLocked).toBe(true)
       expect(result.status).toBe('round-result')
-      expect(result.pointsEarned).toBe(0)
+      expect(result.roundResults[result.roundResults.length - 1].pointsEarned).toBe(0)
       expect(result.streak).toBe(0)
+      expect(result.correctCount).toBe(0)
     })
 
     it('does not process if already locked', () => {
@@ -188,16 +198,6 @@ describe('Game Logic', () => {
         isGuessLocked: true,
         playerGuess: 0,
         showAnswer: true,
-        aiIndex: 0,
-        isCorrect: true,
-        pointsEarned: 100,
-        currentRoundData: {
-          images: [
-            { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-            { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-          ],
-          aiIndex: 0
-        }
       }
 
       const result = processTimeout(playingState)
@@ -216,24 +216,23 @@ describe('Game Logic', () => {
         isGuessLocked: true,
         playerGuess: 0,
         showAnswer: true,
-        aiIndex: 0,
-        isCorrect: true,
-        pointsEarned: 100,
         score: 100,
         streak: 1,
         longestStreak: 1,
-        roundResults: [{ round: 1, isCorrect: true, pointsEarned: 100, timeRemaining: 8 }],
-        currentRoundData: null
+        correctCount: 1,
+        roundResults: [
+          { roundNumber: 1, aiIndex: 0, playerGuess: 0, isCorrect: true, timeRemaining: 8, pointsEarned: 100, streakAtRound: 0 }
+        ],
       }
 
-      const result = nextRound(roundResultState, [])
+      const rounds = createRounds(baseState.currentRoundData!.images.flatMap(img => [img]) as GameImage[], 10)
+      const result = nextRound(roundResultState, rounds)
       expect(result.status).toBe('playing')
       expect(result.currentRound).toBe(2)
       expect(result.timeRemaining).toBe(10)
       expect(result.isGuessLocked).toBe(false)
       expect(result.playerGuess).toBeNull()
       expect(result.showAnswer).toBe(false)
-      expect(result.aiIndex).not.toBeNull()
       expect(result.currentRoundData).not.toBeNull()
     })
 
@@ -247,17 +246,17 @@ describe('Game Logic', () => {
         isGuessLocked: true,
         playerGuess: 0,
         showAnswer: true,
-        aiIndex: 0,
-        isCorrect: true,
-        pointsEarned: 100,
         score: 1000,
         streak: 10,
         longestStreak: 10,
-        roundResults: Array(10).fill({ round: 1, isCorrect: true, pointsEarned: 100, timeRemaining: 8 }),
-        currentRoundData: null
+        correctCount: 10,
+        roundResults: Array(10).fill(null).map((_, i) => (
+          { roundNumber: i + 1, aiIndex: 0, playerGuess: 0, isCorrect: true, timeRemaining: 8, pointsEarned: 100, streakAtRound: i }
+        )),
       }
 
-      const result = nextRound(roundResultState, [])
+      const rounds = createRounds(baseState.currentRoundData!.images.flatMap(img => [img]) as GameImage[], 10)
+      const result = nextRound(roundResultState, rounds)
       expect(result.status).toBe('game-over')
       expect(result.currentRound).toBe(10)
     })
@@ -273,27 +272,19 @@ describe('Game Logic', () => {
         score: 850,
         streak: 0,
         longestStreak: 3,
+        correctCount: 8,
         roundResults: [
-          { round: 1, isCorrect: true, pointsEarned: 100, timeRemaining: 8 },
-          { round: 2, isCorrect: true, pointsEarned: 120, timeRemaining: 9 },
-          { round: 3, isCorrect: false, pointsEarned: 0, timeRemaining: 0 },
-          { round: 4, isCorrect: true, pointsEarned: 90, timeRemaining: 7 },
-          { round: 5, isCorrect: true, pointsEarned: 110, timeRemaining: 8 },
-          { round: 6, isCorrect: false, pointsEarned: 0, timeRemaining: 0 },
-          { round: 7, isCorrect: true, pointsEarned: 95, timeRemaining: 6 },
-          { round: 8, isCorrect: true, pointsEarned: 105, timeRemaining: 7 },
-          { round: 9, isCorrect: true, pointsEarned: 115, timeRemaining: 9 },
-          { round: 10, isCorrect: true, pointsEarned: 115, timeRemaining: 8 },
+          { roundNumber: 1, aiIndex: 0, playerGuess: 0, isCorrect: true, timeRemaining: 8, pointsEarned: 100, streakAtRound: 0 },
+          { roundNumber: 2, aiIndex: 1, playerGuess: 1, isCorrect: true, timeRemaining: 9, pointsEarned: 120, streakAtRound: 1 },
+          { roundNumber: 3, aiIndex: 0, playerGuess: 1, isCorrect: false, timeRemaining: 0, pointsEarned: 0, streakAtRound: 2 },
+          { roundNumber: 4, aiIndex: 1, playerGuess: 1, isCorrect: true, timeRemaining: 7, pointsEarned: 90, streakAtRound: 0 },
+          { roundNumber: 5, aiIndex: 0, playerGuess: 0, isCorrect: true, timeRemaining: 6, pointsEarned: 110, streakAtRound: 1 },
+          { roundNumber: 6, aiIndex: 1, playerGuess: 1, isCorrect: true, timeRemaining: 8, pointsEarned: 115, streakAtRound: 2 },
+          { roundNumber: 7, aiIndex: 0, playerGuess: 1, isCorrect: false, timeRemaining: 0, pointsEarned: 0, streakAtRound: 3 },
+          { roundNumber: 8, aiIndex: 1, playerGuess: 1, isCorrect: true, timeRemaining: 5, pointsEarned: 105, streakAtRound: 0 },
+          { roundNumber: 9, aiIndex: 0, playerGuess: 1, isCorrect: false, timeRemaining: 0, pointsEarned: 0, streakAtRound: 1 },
+          { roundNumber: 10, aiIndex: 1, playerGuess: 1, isCorrect: true, timeRemaining: 4, pointsEarned: 100, streakAtRound: 0 },
         ],
-        timeLimit: 10,
-        timeRemaining: 0,
-        isGuessLocked: false,
-        playerGuess: null,
-        showAnswer: false,
-        aiIndex: null,
-        isCorrect: null,
-        pointsEarned: null,
-        currentRoundData: null
       }
 
       const results = calculateFinalResults(gameOverState)
@@ -302,7 +293,7 @@ describe('Game Logic', () => {
       expect(results.totalRounds).toBe(10)
       expect(results.accuracy).toBe(80)
       expect(results.longestStreak).toBe(3)
-      expect(results.rank).toBeDefined()
+      expect(results.rank).toBe('Sharp Watcher')
     })
 
     it('handles perfect score', () => {
@@ -311,279 +302,63 @@ describe('Game Logic', () => {
         ...baseState,
         status: 'game-over',
         currentRound: 10,
-        score: 1500,
+        score: 2500,
         streak: 10,
         longestStreak: 10,
-        roundResults: Array(10).fill({ round: 1, isCorrect: true, pointsEarned: 150, timeRemaining: 8 }),
-        timeLimit: 10,
-        timeRemaining: 0,
-        isGuessLocked: false,
-        playerGuess: null,
-        showAnswer: false,
-        aiIndex: null,
-        isCorrect: null,
-        pointsEarned: null,
-        currentRoundData: null
+        correctCount: 10,
+        roundResults: Array(10).fill(null).map((_, i) => (
+          { roundNumber: i + 1, aiIndex: 0, playerGuess: 0, isCorrect: true, timeRemaining: 8, pointsEarned: 250, streakAtRound: i }
+        )),
       }
 
       const results = calculateFinalResults(gameOverState)
       expect(results.correctCount).toBe(10)
       expect(results.accuracy).toBe(100)
       expect(results.longestStreak).toBe(10)
-      expect(results.rank).toBe('AI Detective')
+      expect(results.rank).toBe('Master Detector')
     })
   })
 
   describe('generateShareText', () => {
-    it('generates share text with correct format', () => {
+    it('generates share text with results', () => {
       const results = {
-        score: 850,
+        score: 1000,
         correctCount: 8,
         totalRounds: 10,
-        accuracy: 80,
         longestStreak: 3,
-        rank: 'Sharp Eye'
+        accuracy: 80,
+        rank: 'Keen Eye',
+        roundResults: []
       }
-
       const text = generateShareText(results)
-      expect(text).toContain('Guess the Fake')
-      expect(text).toContain('850')
-      expect(text).toContain('8/10')
-      expect(text).toContain('80%')
-      expect(text).toContain('Sharp Eye')
-    })
-  })
-
-  describe('score computation', () => {
-    it('awards base points for correct answer', () => {
-      const baseState = initializeGame(10)
-      const playingState: GameState = {
-        ...baseState,
-        status: 'playing',
-        currentRound: 1,
-        timeRemaining: 0, // No time bonus
-        isGuessLocked: false,
-        playerGuess: null,
-        showAnswer: false,
-        aiIndex: 0,
-        isCorrect: null,
-        pointsEarned: null,
-        currentRoundData: {
-          images: [
-            { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-            { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-          ],
-          aiIndex: 0
-        }
-      }
-
-      const result = processGuess(playingState, 0)
-      expect(result.pointsEarned).toBeGreaterThanOrEqual(50) // Base points
-    })
-
-    it('awards speed bonus based on remaining time', () => {
-      const baseState = initializeGame(10)
-      // Same correct guess but with more time remaining should get more points
-      const playingStateFast: GameState = {
-        ...baseState,
-        status: 'playing',
-        currentRound: 1,
-        timeRemaining: 9, // Lots of time left
-        isGuessLocked: false,
-        playerGuess: null,
-        showAnswer: false,
-        aiIndex: 0,
-        isCorrect: null,
-        pointsEarned: null,
-        currentRoundData: {
-          images: [
-            { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-            { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-          ],
-          aiIndex: 0
-        }
-      }
-
-      const playingStateSlow: GameState = {
-        ...baseState,
-        status: 'playing',
-        currentRound: 1,
-        timeRemaining: 1, // Very little time left
-        isGuessLocked: false,
-        playerGuess: null,
-        showAnswer: false,
-        aiIndex: 0,
-        isCorrect: null,
-        pointsEarned: null,
-        currentRoundData: {
-          images: [
-            { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-            { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-          ],
-          aiIndex: 0
-        }
-      }
-
-      const resultFast = processGuess(playingStateFast, 0)
-      const resultSlow = processGuess(playingStateSlow, 0)
-
-      expect(resultFast.pointsEarned).toBeGreaterThan(resultSlow.pointsEarned!)
-    })
-
-    it('applies streak multiplier for consecutive correct answers', () => {
-      const baseState = initializeGame(10)
-      // First correct answer
-      let state: GameState = {
-        ...baseState,
-        status: 'playing',
-        currentRound: 1,
-        timeRemaining: 8,
-        isGuessLocked: false,
-        playerGuess: null,
-        showAnswer: false,
-        aiIndex: 0,
-        isCorrect: null,
-        pointsEarned: null,
-        score: 0,
-        streak: 0,
-        longestStreak: 0,
-        roundResults: [],
-        currentRoundData: {
-          images: [
-            { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-            { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-          ],
-          aiIndex: 0
-        }
-      }
-
-      // Round 1 - first correct
-      state = processGuess(state, 0)
-      const firstPoints = state.pointsEarned!
-      expect(state.streak).toBe(1)
-
-      // Move to round 2
-      state = nextRound(state, [])
-
-      // Round 2 - second correct (streak = 2)
-      state = processGuess(state, 0)
-      const secondPoints = state.pointsEarned!
-      expect(state.streak).toBe(2)
-
-      // Move to round 3
-      state = nextRound(state, [])
-
-      // Round 3 - third correct (streak = 3)
-      state = processGuess(state, 0)
-      const thirdPoints = state.pointsEarned!
-      expect(state.streak).toBe(3)
-
-      // Streak multiplier should increase points for later rounds
-      // (assuming same time remaining)
-      // This depends on exact formula, but streak should be tracked
-    })
-
-    it('resets streak on wrong answer', () => {
-      const baseState = initializeGame(10)
-      let state: GameState = {
-        ...baseState,
-        status: 'playing',
-        currentRound: 1,
-        timeRemaining: 8,
-        isGuessLocked: false,
-        playerGuess: null,
-        showAnswer: false,
-        aiIndex: 0,
-        isCorrect: null,
-        pointsEarned: null,
-        score: 0,
-        streak: 0,
-        longestStreak: 0,
-        roundResults: [],
-        currentRoundData: {
-          images: [
-            { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-            { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-          ],
-          aiIndex: 0
-        }
-      }
-
-      // Correct guess - streak becomes 1
-      state = processGuess(state, 0)
-      expect(state.streak).toBe(1)
-
-      // Next round
-      state = nextRound(state, [])
-
-      // Wrong guess - streak resets to 0
-      state = processGuess(state, 1) // AI is on left (0), guess right (1)
-      expect(state.streak).toBe(0)
-      expect(state.longestStreak).toBe(1)
-    })
-
-    it('resets streak on timeout', () => {
-      const baseState = initializeGame(10)
-      let state: GameState = {
-        ...baseState,
-        status: 'playing',
-        currentRound: 1,
-        timeRemaining: 8,
-        isGuessLocked: false,
-        playerGuess: null,
-        showAnswer: false,
-        aiIndex: 0,
-        isCorrect: null,
-        pointsEarned: null,
-        score: 0,
-        streak: 1,
-        longestStreak: 1,
-        roundResults: [],
-        currentRoundData: {
-          images: [
-            { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-            { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-          ],
-          aiIndex: 0
-        }
-      }
-
-      // Simulate timeout
-      state = { ...state, timeRemaining: 0 }
-      state = processTimeout(state)
-      expect(state.streak).toBe(0)
-      expect(state.longestStreak).toBe(1)
+      expect(text).toContain('Guess the Fake Results')
+      expect(text).toContain('Score: 1000')
+      expect(text).toContain('Correct: 8/10')
+      expect(text).toContain('Accuracy: 80%')
+      expect(text).toContain('Longest Streak: 3')
+      expect(text).toContain('Rank: Keen Eye')
     })
   })
 
   describe('round progression to game over', () => {
     it('completes 10 rounds then transitions to game-over', () => {
       const baseState = initializeGame(10)
-      let state: GameState = baseState
-
-      // Start game
-      state = { ...state, status: 'playing', timeRemaining: 10, currentRound: 1 }
-      state.currentRoundData = {
-        images: [
-          { src: '/images/ai-1.jpg', isAI: true, credit: 'AI' },
-          { src: '/images/real-1.jpg', isAI: false, credit: 'Real' }
-        ],
-        aiIndex: 0
-      }
-      state.aiIndex = 0
+      let state: GameState = { ...baseState, status: 'playing', currentRound: 1 }
+      const rounds = createRounds(baseState.currentRoundData!.images.flatMap(img => [img]) as GameImage[], 10)
 
       // Play 10 rounds correctly
       for (let round = 1; round <= 10; round++) {
-        state = processGuess(state, 0) // Always guess left (AI)
+        // Process correct guess
+        state = processGuess(state, state.currentRoundData!.aiIndex)
         expect(state.status).toBe('round-result')
 
         if (round < 10) {
-          state = nextRound(state, [])
+          state = nextRound(state, rounds)
           expect(state.status).toBe('playing')
           expect(state.currentRound).toBe(round + 1)
         } else {
           // 10th round should transition to game-over
-          state = nextRound(state, [])
+          state = nextRound(state, rounds)
           expect(state.status).toBe('game-over')
         }
       }

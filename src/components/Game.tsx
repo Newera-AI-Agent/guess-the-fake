@@ -19,7 +19,8 @@ function GameInner({ timeLimit = 10 }: GameProps) {
     if (state.isGuessLocked) return
     const result = processGuess(state, index)
     setState(result as GameState)
-    const isCorrect = result.isCorrect
+    const lastResult = result.roundResults[result.roundResults.length - 1]
+    const isCorrect = lastResult?.isCorrect ?? false
     const resultText = isCorrect
       ? 'Correct! This is the AI-generated image.'
       : 'Incorrect. The AI-generated image was on the other side.'
@@ -59,6 +60,12 @@ function GameInner({ timeLimit = 10 }: GameProps) {
   // Compute final results when game over
   const finalResults = state.status === 'game-over' ? calculateFinalResults(state) : null
   const shareText = finalResults ? generateShareText(finalResults) : ''
+
+  // Derive current round result info from the latest round result
+  const lastRoundResult = state.roundResults[state.roundResults.length - 1]
+  const isCorrect = lastRoundResult?.isCorrect ?? false
+  const aiIndex = lastRoundResult?.aiIndex ?? 0
+  const pointsEarned = lastRoundResult?.pointsEarned ?? 0
 
   // Format timer display
   const minutes = Math.floor(state.timeRemaining / 60)
@@ -180,9 +187,9 @@ function GameInner({ timeLimit = 10 }: GameProps) {
         )}
         {state.status === 'round-result' && (
           <div className="text-center max-w-2xl" role="status" aria-live="polite">
-            <p className="text-2xl font-bold mb-2">{state.isCorrect ? 'Correct!' : 'Incorrect'}</p>
-            <p className="text-dark-400 mb-4">The AI-generated image was {state.aiIndex === 0 ? 'on the left' : 'on the right'}</p>
-            <p className="text-dark-400 mb-6">Points earned: {state.pointsEarned || 0}</p>
+            <p className="text-2xl font-bold mb-2">{isCorrect ? 'Correct!' : 'Incorrect'}</p>
+            <p className="text-dark-400 mb-4">The AI-generated image was {aiIndex === 0 ? 'on the left' : 'on the right'}</p>
+            <p className="text-dark-400 mb-6">Points earned: {pointsEarned}</p>
             <button
               onClick={() => setState(nextRound(state, []))}
               className="inline-block bg-secondary text-white px-4 py-2 rounded-md font-medium hover:bg-secondary/90 transition-colors focus-visible-ring"
