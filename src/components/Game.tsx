@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useReducedMotion, GameProviders, useAnnouncer } from '@/components/Providers'
-import { initializeGame, processGuess, processTimeout, nextRound, calculateFinalResults, generateShareText, type GameState } from '@/lib/game-logic'
-import type { GameImage } from '@/lib/game-logic'
+import { initializeGame, processGuess, processTimeout, nextRound, calculateFinalResults, generateShareText } from '@/lib/game-logic'
+import type { GameState, GameImage } from '@/lib/game-logic'
 
 interface GameProps {
   timeLimit?: number

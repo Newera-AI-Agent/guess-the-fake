@@ -5,10 +5,9 @@ import {
   processTimeout,
   nextRound,
   calculateFinalResults,
-  generateShareText,
-  type GameState,
-  type GameImage
+  generateShareText
 } from './game-logic'
+import type { GameState, GameImage } from './game-logic'
 
 describe('Game Logic', () => {
   describe('initializeGame', () => {
