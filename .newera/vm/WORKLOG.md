@@ -30,3 +30,12 @@ Durable session memory for this VM job chain. Each line is one step or wind-down
 - [2026-10-10T09:08:51.054Z | VM 2/3] VERIFIED green: npm run build 2>&1 | tail -30
 - [2026-10-10T09:09:00.952Z | VM 2/3] VERIFIED green: npm run test 2>&1
 - [2026-10-10T09:10:39.058Z | VM 2/3] RELAY checkpoint at step 172 — handoff committed, VM 3 continues.
+- [2026-10-10T09:10:55.015Z | VM 3/3] boot: VM 3/3 online (job vm-mv26c6bn-emenax01, 60 min budget, relay continuation)
+- [2026-10-10T09:10:55.016Z | VM 3/3] self-check PASS: shell: VERIFIED (the harness executed bash on this VM at boot); node: v24.21.0; npm: 11.19.0; python3: Python 3.12.3; git: repo checked out @ 6c99209; filesystem: WRITABLE (the harness wrote + read back a probe file); skills: 23 knowledge docs in .newera/skills/ (list_skills / read_skill); project: 
+- [2026-10-10T09:11:03.882Z | VM 3/3] boot auto-setup: npm install --no-audit --no-fund ok
+- [2026-10-10T09:11:40.377Z | VM 3/3] VERIFIED green: npm run build
+- [2026-10-10T09:13:25.489Z | VM 3/3] CONTRACT REQ-020 -> complete: CREDITS.md in public/images/ and ATTRIBUTION section in README.md with source + license for all 10 images
+- [2026-10-10T09:13:31.122Z | VM 3/3] CONTRACT REQ-002 -> complete: Players shown two images side by side, must guess which is AI-generated before timer runs out - implemented in GameScreen component
+- [2026-10-10T09:13:35.917Z | VM 3/3] CONTRACT REQ-018 -> complete: 5 real images downloaded from Wikimedia Commons public domain/CC0 sources, verified and committed to public/images/
+- [2026-10-10T09:14:50.318Z | VM 3/3] PLAN updated: 16 steps
+- [2026-10-10T09:15:21.884Z | VM 3/3] VERIFIED green: npm run test

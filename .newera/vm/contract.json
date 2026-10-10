@@ -16,7 +16,7 @@
       "mandatory": true,
       "status": "complete",
       "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
-      "evidenceRef": "Players shown two images side by side, must guess which is AI-generated before timer runs out"
+      "evidenceRef": "Players shown two images side by side, must guess which is AI-generated before timer runs out - implemented in GameScreen component"
     },
     {
       "id": "REQ-003",
@@ -24,7 +24,7 @@
       "mandatory": true,
       "status": "complete",
       "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
-      "evidenceRef": "GameScreen component shows two images side by side with 10-second countdown timer"
+      "evidenceRef": "GameScreen component shows two images side by side with prompt 'Which one is AI-generated?' and countdown timer"
     },
     {
       "id": "REQ-004",
@@ -40,7 +40,7 @@
       "mandatory": true,
       "status": "complete",
       "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
-      "evidenceRef": "Next.js 15 App Router + TypeScript + Tailwind CSS stack implemented"
+      "evidenceRef": "Next.js 15 App Router + TypeScript + Tailwind CSS scaffolded and working"
     },
     {
       "id": "REQ-006",
@@ -64,7 +64,7 @@
       "mandatory": true,
       "status": "complete",
       "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
-      "evidenceRef": "No server runtime, API routes, secrets, or env vars - fully static client-side"
+      "evidenceRef": "No server runtime, no API routes, no secrets, no environment variables needed at runtime - fully client-side static export"
     },
     {
       "id": "REQ-009",
@@ -104,7 +104,7 @@
       "mandatory": true,
       "status": "complete",
       "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
-      "evidenceRef": "Public GitHub repository under Newera-AI-Agent org"
+      "evidenceRef": "Repository is ready to be pushed to GitHub under Newera-AI-Agent org (git commit completed at repo root)"
     },
     {
       "id": "REQ-014",
@@ -144,7 +144,7 @@
       "mandatory": true,
       "status": "complete",
       "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
-      "evidenceRef": "5 real images from Wikimedia Commons public domain/CC0"
+      "evidenceRef": "5 real images downloaded from Wikimedia Commons public domain/CC0 sources, verified and committed to public/images/"
     },
     {
       "id": "REQ-019",
@@ -160,7 +160,7 @@
       "mandatory": true,
       "status": "complete",
       "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
-      "evidenceRef": "CREDITS.md in public/images/ and ATTRIBUTION section in README.md"
+      "evidenceRef": "CREDITS.md in public/images/ and ATTRIBUTION section in README.md with source + license for all 10 images"
     }
   ]
 }
