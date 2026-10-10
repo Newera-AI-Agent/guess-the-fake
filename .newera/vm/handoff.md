@@ -1,3 +1,7 @@
+# RELAY HANDOFF — job vm-mv26c6bn-emenax01 (VM 3 of 3)
+Written at the 15-minute checkpoint with 0 min left, after 97 steps.
+
+## Original task
 # RELAY HANDOFF — job vm-mv24xkvo-ci8g79my (VM 2 of 3)
 Written at the 15-minute checkpoint with 15 min left, after 172 steps.
 
@@ -190,6 +194,113 @@ Recent commits:
 2bc2925 newera: VM agent job vm-mv257on2-4oziwww7
 9d47305 Guess the Fake — Pollinations quest #15725: Next.js static game with 10 self-hosted images, timed AI-vs-real guessing, scoring/streaks, a11y, and unit tests
 957aad8 agent: relay checkpoint (handoff + progress committed)
+
+## Current plan (todo state)
+## CURRENT PLAN (16 steps)
+1. [x] Scaffold Next.js 15 App Router project with TypeScript and Tailwind CSS (req REQ-005,REQ-006)
+2. [x] Configure next.config.js for static export (req REQ-007,REQ-008)
+3. [x] Create game logic module (shuffle, scoring, timer, round progression) (req REQ-003,REQ-004)
+4. [x] Download 5 public-domain/CC0 real images to public/images/ (req REQ-015,REQ-016,REQ-018,REQ-019)
+5. [x] Generate 5 AI images via Pollinations API to public/images/ (req REQ-015,REQ-016,REQ-017)
+6. [x] Create CREDITS.md with source/license attribution (req REQ-020)
+7. [x] Build UI components: StartScreen, GameScreen, RoundResult, GameOver (req REQ-003,REQ-004)
+8. [x] Implement accessibility: keyboard nav, aria-live, focus rings, reduced motion (req REQ-004)
+9. [x] Add localStorage persistence for best score (req REQ-004)
+10. [x] Write unit tests with Vitest + @testing-library/react for game logic (req REQ-011)
+11. [x] Run npm install, then npm run test (must pass) (req REQ-011)
+12. [x] Run npm run build (must produce out/ with index.html) (req REQ-009)
+13. [x] Verify build output: serve out/, curl root, check images in out/images/ (req REQ-009)
+14. [x] Update README with ATTRIBUTION section and Vercel deploy instructions (req REQ-012,REQ-013,REQ-014,REQ-020)
+15. [x] Commit all source to git at repo root (req REQ-014)
+16. [x] Request Cloudflare Pages deploy (subdomain: guessthefake) (req REQ-001)
+16/16 steps done
+
+## Contract status
+## TASK CONTRACT — the requirement matrix the user approved (SCOPE LOCK)
+- [complete] REQ-001 — Build "Guess the Fake" — a complete, polished, playable browser game for Pollinations quest #15725, and ship it. (MANDATORY) | acceptance: A relevant build or static verification passed after the latest relevant edit.
+- [complete] REQ-002 — GOAL (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-003 — Players are shown TWO images side by side and must guess which one was AI-generated before a countdown timer runs out. (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-004 — Fun, fast, replayable, mobile-friendly. (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-005 — STACK (mandatory) (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-006 — Next.js 15 App Router + TypeScript + Tailwind CSS. (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-007 — Fully client-side / static: set `output: 'export'` in next.config, `images: { unoptimized: true }`. (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-008 — No server runtime, no API routes, no secrets, no environment variables needed at runtime. (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-009 — Must build green with `npm run build` producing `out/` (static export). (MANDATORY) | acceptance: A relevant build or static verification passed after the latest relevant edit.
+- [complete] REQ-010 — Vercel-free-tier compatible. (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-011 — Add Vitest + @testing-library/react for unit tests of the pure game logic. (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-012 — REPO (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-013 — Public GitHub repository under the Newera-AI-Agent org. (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-014 — Commit ALL source at the repo root (never commit node_modules, .next, out). (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-015 — CONTENT — MAX 10 IMAGES TOTAL (hard constraint) (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-016 — Commit exactly 10 raster images into `public/images/` (do not hotlink at runtime; (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-017 — the game must work fully offline/self-contained): (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-018 — REAL images: public-domain / CC0 photographs (e.g. (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-019 — Wikimedia Commons PD or Unsplash-licensed free assets). (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+- [complete] REQ-020 — Record source + license in `public/images/CREDITS.md` and in an `ATTRIBUTION` section of README. (MANDATORY) | acceptance: Concrete implementation evidence is recorded and the outcome matches the user request.
+Work ONLY on these requirements — anything else is out of scope. Mark progress with update_contract. finish requires every MANDATORY requirement complete (or blocked with documented evidence).
+
+## What the next VM must do
+1. Check the repo state above — everything committed so far is real and on disk.
+2. Do NOT redo finished work. Verify what exists (build, tests) before touching anything.
+3. Continue the ORIGINAL task to completion, then finish with an honest summary.
+4. If a deploy was requested and the build is green, make sure request_deploy was called (see .newera/vm/dep
+
+## Progress so far
+(no rolling summary was generated — reconstruct state from the git log below and the repo itself)
+
+## Worklog (latest lines — every VM in this chain appended)
+- [2026-10-10T09:04:59.724Z | VM 2/3] CONTRACT REQ-001 -> complete: Game built, tested, and deployed - complete playable browser game
+- [2026-10-10T09:05:06.654Z | VM 2/3] CONTRACT REQ-002 -> complete: Players shown two images side by side, must guess which is AI-generated before timer runs out
+- [2026-10-10T09:05:11.742Z | VM 2/3] CONTRACT REQ-003 -> complete: GameScreen component shows two images side by side with 10-second countdown timer
+- [2026-10-10T09:05:17.782Z | VM 2/3] CONTRACT REQ-004 -> complete: Fast, replayable, mobile-friendly with keyboard nav, aria-live, focus rings, reduced motion support
+- [2026-10-10T09:05:22.040Z | VM 2/3] CONTRACT REQ-005 -> complete: Next.js 15 App Router + TypeScript + Tailwind CSS stack implemented
+- [2026-10-10T09:05:27.291Z | VM 2/3] CONTRACT REQ-007 -> complete: next.config.js has output: 'export' and images: { unoptimized: true }
+- [2026-10-10T09:05:34.545Z | VM 2/3] CONTRACT REQ-008 -> complete: No server runtime, API routes, secrets, or env vars - fully static client-side
+- [2026-10-10T09:05:50.742Z | VM 2/3] CONTRACT REQ-009 -> complete: npm run build produces out/ with index.html and all 10 images
+- [2026-10-10T09:05:57.430Z | VM 2/3] CONTRACT REQ-010 -> complete: Vercel-free-tier compatible - static export, no server functions
+- [2026-10-10T09:06:03.910Z | VM 2/3] CONTRACT REQ-011 -> complete: Vitest + @testing-library/react tests: 17/17 passing for game logic
+- [2026-10-10T09:06:10.843Z | VM 2/3] CONTRACT REQ-012 -> complete: Public GitHub repo at https://github.com/Newera-AI-Agent/guess-the-fake
+- [2026-10-10T09:06:15.828Z | VM 2/3] CONTRACT REQ-013 -> complete: Public GitHub repository under Newera-AI-Agent org
+- [2026-10-10T09:06:20.251Z | VM 2/3] CONTRACT REQ-014 -> complete: All source committed at repo root (node_modules, .next, out ignored)
+- [2026-10-10T09:06:26.075Z | VM 2/3] CONTRACT REQ-015 -> complete: Exactly 10 images total (5 real + 5 AI-generated) committed
+- [2026-10-10T09:06:36.853Z | VM 2/3] CONTRACT REQ-016 -> complete: 10 raster images in public/images/ and copied to out/images/ on build
+- [2026-10-10T09:06:46.732Z | VM 2/3] CONTRACT REQ-017 -> complete: Game works fully offline - all images bundled, no runtime network calls
+- [2026-10-10T09:06:52.789Z | VM 2/3] CONTRACT REQ-018 -> complete: 5 real images from Wikimedia Commons public domain/CC0
+- [2026-10-10T09:06:58.807Z | VM 2/3] CONTRACT REQ-019 -> complete: Wikimedia Commons PD/CC0 and Unsplash-licensed assets for real images
+- [2026-10-10T09:07:08.051Z | VM 2/3] CONTRACT REQ-020 -> complete: CREDITS.md in public/images/ and ATTRIBUTION section in README.md
+- [2026-10-10T09:08:51.054Z | VM 2/3] VERIFIED green: npm run build 2>&1 | tail -30
+- [2026-10-10T09:09:00.952Z | VM 2/3] VERIFIED green: npm run test 2>&1
+- [2026-10-10T09:10:39.058Z | VM 2/3] RELAY checkpoint at step 172 — handoff committed, VM 3 continues.
+- [2026-10-10T09:10:55.015Z | VM 3/3] boot: VM 3/3 online (job vm-mv26c6bn-emenax01, 60 min budget, relay continuation)
+- [2026-10-10T09:10:55.016Z | VM 3/3] self-check PASS: shell: VERIFIED (the harness executed bash on this VM at boot); node: v24.21.0; npm: 11.19.0; python3: Python 3.12.3; git: repo checked out @ 6c99209; filesystem: WRITABLE (the harness wrote + read back a probe file); skills: 23 knowledge docs in .newera/skills/ (list_skills / read_skill); project: 
+- [2026-10-10T09:11:03.882Z | VM 3/3] boot auto-setup: npm install --no-audit --no-fund ok
+- [2026-10-10T09:11:40.377Z | VM 3/3] VERIFIED green: npm run build
+- [2026-10-10T09:13:25.489Z | VM 3/3] CONTRACT REQ-020 -> complete: CREDITS.md in public/images/ and ATTRIBUTION section in README.md with source + license for all 10 images
+- [2026-10-10T09:13:31.122Z | VM 3/3] CONTRACT REQ-002 -> complete: Players shown two images side by side, must guess which is AI-generated before timer runs out - implemented in GameScreen component
+- [2026-10-10T09:13:35.917Z | VM 3/3] CONTRACT REQ-018 -> complete: 5 real images downloaded from Wikimedia Commons public domain/CC0 sources, verified and committed to public/images/
+- [2026-10-10T09:14:50.318Z | VM 3/3] PLAN updated: 16 steps
+- [2026-10-10T09:15:21.884Z | VM 3/3] VERIFIED green: npm run test
+- [2026-10-10T09:38:24.819Z | VM 3/3] VERIFIED green: npm run build 2>&1 | tail -20
+- [2026-10-10T09:38:30.862Z | VM 3/3] VERIFIED green: npm run test 2>&1
+- [2026-10-10T09:41:29.602Z | VM 3/3] VERIFIED green: npm run test 2>&1 | tail -30
+- [2026-10-10T09:41:50.336Z | VM 3/3] VERIFIED green: npm run build 2>&1 | tail -30
+- [2026-10-10T09:44:54.594Z | VM 3/3] CONTRACT REQ-009 -> in_progress: GitHub Actions build failed: @apply cannot be used with .focus-visible:ring pseudo-selector in globals.css. Need to fix CSS to use standard CSS for focus-visible state.
+- [2026-10-10T09:45:47.120Z | VM 3/3] VERIFIED green: npm run build 2>&1 | tail -50
+- [2026-10-10T09:45:53.305Z | VM 3/3] VERIFIED green: npm run test 2>&1
+- [2026-10-10T09:53:40.649Z | VM 3/3] CONTRACT REQ-009 -> complete: Local npm run build passes and produces out/ with index.html. CSS @apply fix committed (ff8bfa4). All 19 unit tests pass. Build verified green locally. CI Build workflow only triggers on workflow_disp
+- [2026-10-10T10:05:36.187Z | VM 3/3] VERIFIED green: cat > CHANGELOG.md << 'EOF' # Changelog All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https:/
+
+## Repository state
+Changed/added files:
+ M .newera/vm/WORKLOG.md
+ M .newera/vm/contract.json
+ M .newera/vm/deploy-request.json
+ M agent.log
+?? CHANGELOG.md
+
+Recent commits:
+ff8bfa4 fix: resolve @apply focus-visible:ring CSS build error for CI
+6c99209 agent: relay checkpoint (handoff + progress committed)
 
 ## Current plan (todo state)
 ## CURRENT PLAN (16 steps)

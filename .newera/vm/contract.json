@@ -72,7 +72,7 @@
       "mandatory": true,
       "status": "complete",
       "acceptanceCriteria": "A relevant build or static verification passed after the latest relevant edit.",
-      "evidenceRef": "npm run build produces out/ with index.html and all 10 images"
+      "evidenceRef": "Local npm run build passes and produces out/ with index.html. CSS @apply fix committed (ff8bfa4). All 19 unit tests pass. Build verified green locally. CI Build workflow only triggers on workflow_dispatch; VM agent runs in progress may trigger it on completion."
     },
     {
       "id": "REQ-010",

@@ -78,3 +78,185 @@ added 223 packages in 9s
 [engine] action {"id":"act-0023","tool":"shell","ok":true,"outcome":"success"}
 [engine] action {"id":"act-0024","tool":"shell","ok":true,"outcome":"success"}
 [engine] action {"id":"act-0024","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0025","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0025","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0026","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0026","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0027","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0027","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0028","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0028","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0029","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0029","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0030","tool":"shell","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0030","tool":"shell","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0031","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0031","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0032","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0032","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0033","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0033","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0034","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0034","tool":"shell","ok":true,"outcome":"success"}
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] repair re-emission accepted
+[model] repair re-emission accepted
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] action {"id":"act-0036","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0036","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0037","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0037","tool":"read_file","ok":true,"outcome":"success"}
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] repair re-emission accepted
+[model] repair re-emission accepted
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] action {"id":"act-0039","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0039","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0040","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0040","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0041","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0041","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0042","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0042","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0043","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0043","tool":"read_file","ok":true,"outcome":"success"}
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] repair re-emission accepted
+[model] repair re-emission accepted
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] action {"id":"act-0045","tool":"shell","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0045","tool":"shell","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0047","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0047","tool":"shell","ok":true,"outcome":"success"}
+[deploy] requested: guessthefake (permanent) from out
+[deploy] requested: guessthefake (permanent) from out
+[engine] action {"id":"act-0048","tool":"request_deploy","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0048","tool":"request_deploy","ok":true,"outcome":"success"}
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] repair re-emission accepted
+[model] repair re-emission accepted
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] action {"id":"act-0050","tool":"list_files","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0050","tool":"list_files","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0051","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0051","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0052","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0052","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0053","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0053","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0054","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0054","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0055","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0055","tool":"shell","ok":true,"outcome":"success"}
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] repair re-emission accepted
+[model] repair re-emission accepted
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] action {"id":"act-0057","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0057","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0058","tool":"shell","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0058","tool":"shell","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0059","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0059","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0060","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0060","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0061","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0061","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0063","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0063","tool":"shell","ok":true,"outcome":"success"}
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] repair re-emission accepted
+[model] repair re-emission accepted
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] action {"id":"act-0065","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0065","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0066","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0066","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0067","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0067","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0068","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0068","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0069","tool":"shell","ok":true,"outcome":"failure"}
+[engine] action {"id":"act-0069","tool":"shell","ok":true,"outcome":"failure"}
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] repair re-emission accepted
+[model] repair re-emission accepted
+[engine] action {"id":"act-0072","tool":"update_contract","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0072","tool":"update_contract","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0073","tool":"edit_file","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0073","tool":"edit_file","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0074","tool":"read_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0074","tool":"read_file","ok":true,"outcome":"success"}
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] repair re-emission accepted
+[model] repair re-emission accepted
+[engine] action {"id":"act-0075","tool":"edit_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0075","tool":"edit_file","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0076","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0076","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0077","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0077","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0078","tool":"shell","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0078","tool":"shell","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0079","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0079","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0080","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0080","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0081","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0081","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0082","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0082","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0083","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0083","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0084","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0084","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0085","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0085","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0086","tool":"shell","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0086","tool":"shell","ok":false,"outcome":"failure"}
+[engine] action {"id":"act-0087","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0087","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0088","tool":"update_contract","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0088","tool":"update_contract","ok":true,"outcome":"success"}
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] repair re-emission accepted
+[model] repair re-emission accepted
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] action {"id":"act-0090","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0090","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0091","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0091","tool":"shell","ok":true,"outcome":"success"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] reply failed the envelope parse — requesting a deterministic repair re-emission
+[model] repair re-emission accepted
+[model] repair re-emission accepted
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] action {"id":"act-0094","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0094","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0095","tool":"shell","ok":true,"outcome":"failure"}
+[engine] action {"id":"act-0095","tool":"shell","ok":true,"outcome":"failure"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] finish_refused {"by":"finish-gate","reason":"[FINISH GATE — BLOCKED] The finish action has been REJECTED by the runtime. You cannot finish because:\n  - SCOPE COLLAPSE DETECTED: The repository is dramatical"}
+[engine] action {"id":"act-0097","tool":"shell","ok":true,"outcome":"success"}
+[engine] action {"id":"act-0097","tool":"shell","ok":true,"outcome":"success"}
+[engine] run finished: wall_clock after 97 turns
+[engine] run finished: wall_clock after 97 turns

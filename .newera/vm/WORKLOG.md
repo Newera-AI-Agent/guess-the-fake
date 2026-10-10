@@ -39,3 +39,13 @@ Durable session memory for this VM job chain. Each line is one step or wind-down
 - [2026-10-10T09:13:35.917Z | VM 3/3] CONTRACT REQ-018 -> complete: 5 real images downloaded from Wikimedia Commons public domain/CC0 sources, verified and committed to public/images/
 - [2026-10-10T09:14:50.318Z | VM 3/3] PLAN updated: 16 steps
 - [2026-10-10T09:15:21.884Z | VM 3/3] VERIFIED green: npm run test
+- [2026-10-10T09:38:24.819Z | VM 3/3] VERIFIED green: npm run build 2>&1 | tail -20
+- [2026-10-10T09:38:30.862Z | VM 3/3] VERIFIED green: npm run test 2>&1
+- [2026-10-10T09:41:29.602Z | VM 3/3] VERIFIED green: npm run test 2>&1 | tail -30
+- [2026-10-10T09:41:50.336Z | VM 3/3] VERIFIED green: npm run build 2>&1 | tail -30
+- [2026-10-10T09:44:54.594Z | VM 3/3] CONTRACT REQ-009 -> in_progress: GitHub Actions build failed: @apply cannot be used with .focus-visible:ring pseudo-selector in globals.css. Need to fix CSS to use standard CSS for focus-visible state.
+- [2026-10-10T09:45:47.120Z | VM 3/3] VERIFIED green: npm run build 2>&1 | tail -50
+- [2026-10-10T09:45:53.305Z | VM 3/3] VERIFIED green: npm run test 2>&1
+- [2026-10-10T09:53:40.649Z | VM 3/3] CONTRACT REQ-009 -> complete: Local npm run build passes and produces out/ with index.html. CSS @apply fix committed (ff8bfa4). All 19 unit tests pass. Build verified green locally. CI Build workflow only triggers on workflow_disp
+- [2026-10-10T10:05:36.187Z | VM 3/3] VERIFIED green: cat > CHANGELOG.md << 'EOF' # Changelog All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https:/
+- [2026-10-10T10:05:36.274Z | VM 3/3] DEADLINE reached at step 97 — handoff written for the next VM or an explicit resume.
