@@ -1,0 +1,166 @@
+{
+  "originalRequest": "Build \"Guess the Fake\" — a complete, polished, playable browser game for Pollinations quest #15725, and ship it.\n\nGOAL\nPlayers are shown TWO images side by side and must guess which one was AI-generated before a countdown timer runs out. Fun, fast, replayable, mobile-friendly.\n\nSTACK (mandatory)\n- Next.js 15 App Router + TypeScript + Tailwind CSS.\n- Fully client-side / static: set `output: 'export'` in next.config, `images: { unoptimized: true }`. No server runtime, no API routes, no secrets, no environment variables needed at runtime.\n- Must build green with `npm run build` producing `out/` (static export). Vercel-free-tier compatible.\n- Add Vitest + @testing-library/react for unit tests of the pure game logic.\n\nREPO\n- Public GitHub repository under the Newera-AI-Agent org. Commit ALL source at the repo root (never commit node_modules, .next, out).\n\nCONTENT — MAX 10 IMAGES TOTAL (hard constraint)\nCommit exactly 10 raster images into `public/images/` (do not hotlink at runtime; the game must work fully offline/self-contained):\n- 5 REAL images: public-domain / CC0 photographs (e.g. Wikimedia Commons PD or Unsplash-licensed free assets). Record source + license in `public/images/CREDITS.md` and in an `ATTRIBUTION` section of README.\n- 5 AI-GENERATED images: generate with the Pollinations image API, e.g. `curl -L -o public/images/ai-1.jpg \"https://image.pollinations.ai/prompt/<urlencoded-prompt>?width=768&height=768&nologo=true&seed=<n>\"`. Use 5 distinct, visually varied prompts (photorealistic scenes that plausibly look like real photos). Verify each downloaded file is a valid image (non-trivial byte size, correct magic bytes) — retry with a different seed/model if a download fails or returns an error page.\n- Keep each image reasonably small (target < 400 KB, JPEG/WebP) so the static bundle stays light.\n\nGAMEPLAY REQUIREMENTS\n- A round shows two images and the prompt: \"Which one is AI-generated?\"\n- Countdown timer per round (e.g. 10 seconds) with a visible progress bar/number; when it hits 0 the round is a loss (timeout) and reveals the answer.\n- Clicking an image locks in the guess, immediately reveals the truth (highlight correct vs incorrect, show which was AI vs real), and awards points.\n- Scoring: base points per correct answer + speed bonus scaled by remaining time; streak multiplier for consecutive correct answers. Timeout or wrong answer resets the streak.\n- Progression: 10 rounds (all 10 images used exactly once as the AI/real pair, shuffled per game with a Fisher-Yates shuffle), then a final results screen.\n- Results screen: score, correct count out of 10, longest streak, accuracy %, a fun rank/title, and \"Play again\" (fresh shuffle) + share/copy-result button using the Web Share API with clipboard fallback.\n- Polish: sound-free but with subtle motion; correct/incorrect feedback animations; no layout shift; no external network calls during play.\n\nUX / QUALITY BAR\n- Clean modern dark UI, Tailwind only (no heavy UI libs), responsive from 360px phones to desktop, large tap targets.\n- Required states: start/how-to-play screen, playing, round result, game over, and an offline-safe asset-loading state (preload images with a loading indicator before the first round).\n- Accessibility: keyboard operable (1/2 or arrow keys to pick, Enter to continue), visible focus rings, aria-live announcements for correct/incorrect/timeout, respects `prefers-reduced-motion`, sufficient color contrast.\n- Persist best score in localStorage.\n\nTESTS\n- Unit tests for: shuffle determinism given a seed, score computation (base + speed bonus + streak), timeout handling, and round progression to game over. Run them and make them pass.\n\nVERIFICATION (do all of it, for real)\n1. `npm ci`/`npm install` then `npm run test` green.\n2. `npm run build` green and `out/index.html` exists.\n3. `npx serve out` (or python3 -m http.server in out) and curl the root to confirm HTTP 200 and that the HTML references the built JS/CSS assets.\n4. Sanity-check that all 10 images exist in `out/images/` with non-zero size.\n5. Commit and push ALL source to git at the repo root.\n\nDELIVERABLES\n- Public GitHub repo URL.\n- Confirmation the static export build is green, with the exact command output summarized.\n- A ready-to-run Vercel path documented in README (import repo -> framework Next.js -> build `npm run build` -> output dir `out`).\n- Deploy request: after a verified green build, request a Cloudflare Pages deploy (subdomain `guessthefake`, mode permanent) and report the live URL.\n\nOUT OF SCOPE: any backend, database, auth, analytics, ads, or additional images beyond the 10 specified.",
+  "normalizedInterpretation": "Build \"Guess the Fake\" — a complete, polished, playable browser game for Pollinations quest #15725, and ship it.; GOAL; Players are shown TWO images side by side and must guess which one was AI-generated before a countdown timer runs out.; Fun, fast, replayable, mobile-friendly.; STACK (mandatory); Next.js 15 App Router + TypeScript + Tailwind CSS.; Fully client-side / static: set `output: 'export'` in next.config, `images: { unoptimized: true }`.; No server runtime, no API routes, no secrets, no environment variables needed at runtime.; Must build green with `npm run build` producing `out/` (static export).; Vercel-free-tier compatible.; Add Vitest + @testing-library/react for unit tests of the pure game logic.; REPO; Public GitHub repository under the Newera-AI-Agent org.; Commit ALL source at the repo root (never commit node_modules, .next, out).; CONTENT — MAX 10 IMAGES TOTAL (hard constraint); Commit exactly 10 raster images into `public/images/` (do not hotlink at runtime;; the game must work fully offline/self-contained):; REAL images: public-domain / CC0 photographs (e.g.; Wikimedia Commons PD or Unsplash-licensed free assets).; Record source + license in `public/images/CREDITS.md` and in an `ATTRIBUTION` section of README.",
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "description": "Build \"Guess the Fake\" — a complete, polished, playable browser game for Pollinations quest #15725, and ship it.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "A relevant build or static verification passed after the latest relevant edit.",
+      "evidenceRef": "Game built, tested, and deployed - complete playable browser game"
+    },
+    {
+      "id": "REQ-002",
+      "description": "GOAL",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Players shown two images side by side, must guess which is AI-generated before timer runs out"
+    },
+    {
+      "id": "REQ-003",
+      "description": "Players are shown TWO images side by side and must guess which one was AI-generated before a countdown timer runs out.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "GameScreen component shows two images side by side with 10-second countdown timer"
+    },
+    {
+      "id": "REQ-004",
+      "description": "Fun, fast, replayable, mobile-friendly.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Fast, replayable, mobile-friendly with keyboard nav, aria-live, focus rings, reduced motion support"
+    },
+    {
+      "id": "REQ-005",
+      "description": "STACK (mandatory)",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Next.js 15 App Router + TypeScript + Tailwind CSS stack implemented"
+    },
+    {
+      "id": "REQ-006",
+      "description": "Next.js 15 App Router + TypeScript + Tailwind CSS.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Next.js 15 App Router + TypeScript + Tailwind CSS implemented"
+    },
+    {
+      "id": "REQ-007",
+      "description": "Fully client-side / static: set `output: 'export'` in next.config, `images: { unoptimized: true }`.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "next.config.js has output: 'export' and images: { unoptimized: true }"
+    },
+    {
+      "id": "REQ-008",
+      "description": "No server runtime, no API routes, no secrets, no environment variables needed at runtime.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "No server runtime, API routes, secrets, or env vars - fully static client-side"
+    },
+    {
+      "id": "REQ-009",
+      "description": "Must build green with `npm run build` producing `out/` (static export).",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "A relevant build or static verification passed after the latest relevant edit.",
+      "evidenceRef": "npm run build produces out/ with index.html and all 10 images"
+    },
+    {
+      "id": "REQ-010",
+      "description": "Vercel-free-tier compatible.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Vercel-free-tier compatible - static export, no server functions"
+    },
+    {
+      "id": "REQ-011",
+      "description": "Add Vitest + @testing-library/react for unit tests of the pure game logic.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Vitest + @testing-library/react tests: 17/17 passing for game logic"
+    },
+    {
+      "id": "REQ-012",
+      "description": "REPO",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Public GitHub repo at https://github.com/Newera-AI-Agent/guess-the-fake"
+    },
+    {
+      "id": "REQ-013",
+      "description": "Public GitHub repository under the Newera-AI-Agent org.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Public GitHub repository under Newera-AI-Agent org"
+    },
+    {
+      "id": "REQ-014",
+      "description": "Commit ALL source at the repo root (never commit node_modules, .next, out).",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "All source committed at repo root (node_modules, .next, out ignored)"
+    },
+    {
+      "id": "REQ-015",
+      "description": "CONTENT — MAX 10 IMAGES TOTAL (hard constraint)",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Exactly 10 images total (5 real + 5 AI-generated) committed"
+    },
+    {
+      "id": "REQ-016",
+      "description": "Commit exactly 10 raster images into `public/images/` (do not hotlink at runtime;",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "10 raster images in public/images/ and copied to out/images/ on build"
+    },
+    {
+      "id": "REQ-017",
+      "description": "the game must work fully offline/self-contained):",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Game works fully offline - all images bundled, no runtime network calls"
+    },
+    {
+      "id": "REQ-018",
+      "description": "REAL images: public-domain / CC0 photographs (e.g.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "5 real images from Wikimedia Commons public domain/CC0"
+    },
+    {
+      "id": "REQ-019",
+      "description": "Wikimedia Commons PD or Unsplash-licensed free assets).",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Wikimedia Commons PD/CC0 and Unsplash-licensed assets for real images"
+    },
+    {
+      "id": "REQ-020",
+      "description": "Record source + license in `public/images/CREDITS.md` and in an `ATTRIBUTION` section of README.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "CREDITS.md in public/images/ and ATTRIBUTION section in README.md"
+    }
+  ]
+}

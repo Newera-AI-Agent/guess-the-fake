@@ -7,3 +7,26 @@ Durable session memory for this VM job chain. Each line is one step or wind-down
 - [2026-10-10T08:05:30.208Z | VM 1/3] VERIFIED green: curl -L -o public/images/ai-1.jpg "https://image.pollinations.ai/prompt/photorealistic%20majestic%20mountain%20landscape%20at%20golden%20hour%20dramatic%20light
 - [2026-10-10T08:16:34.514Z | VM 1/3] PLAN updated: 16 steps
 - [2026-10-10T08:31:18.196Z | VM 1/3] RELAY checkpoint at step 62 — handoff committed, VM 2 continues.
+- [2026-10-10T09:02:18.744Z | VM 2/3] CONTRACT REQ-006 -> complete: Next.js 15 App Router + TypeScript + Tailwind CSS implemented
+- [2026-10-10T09:04:59.724Z | VM 2/3] CONTRACT REQ-001 -> complete: Game built, tested, and deployed - complete playable browser game
+- [2026-10-10T09:05:06.654Z | VM 2/3] CONTRACT REQ-002 -> complete: Players shown two images side by side, must guess which is AI-generated before timer runs out
+- [2026-10-10T09:05:11.742Z | VM 2/3] CONTRACT REQ-003 -> complete: GameScreen component shows two images side by side with 10-second countdown timer
+- [2026-10-10T09:05:17.782Z | VM 2/3] CONTRACT REQ-004 -> complete: Fast, replayable, mobile-friendly with keyboard nav, aria-live, focus rings, reduced motion support
+- [2026-10-10T09:05:22.040Z | VM 2/3] CONTRACT REQ-005 -> complete: Next.js 15 App Router + TypeScript + Tailwind CSS stack implemented
+- [2026-10-10T09:05:27.291Z | VM 2/3] CONTRACT REQ-007 -> complete: next.config.js has output: 'export' and images: { unoptimized: true }
+- [2026-10-10T09:05:34.545Z | VM 2/3] CONTRACT REQ-008 -> complete: No server runtime, API routes, secrets, or env vars - fully static client-side
+- [2026-10-10T09:05:50.742Z | VM 2/3] CONTRACT REQ-009 -> complete: npm run build produces out/ with index.html and all 10 images
+- [2026-10-10T09:05:57.430Z | VM 2/3] CONTRACT REQ-010 -> complete: Vercel-free-tier compatible - static export, no server functions
+- [2026-10-10T09:06:03.910Z | VM 2/3] CONTRACT REQ-011 -> complete: Vitest + @testing-library/react tests: 17/17 passing for game logic
+- [2026-10-10T09:06:10.843Z | VM 2/3] CONTRACT REQ-012 -> complete: Public GitHub repo at https://github.com/Newera-AI-Agent/guess-the-fake
+- [2026-10-10T09:06:15.828Z | VM 2/3] CONTRACT REQ-013 -> complete: Public GitHub repository under Newera-AI-Agent org
+- [2026-10-10T09:06:20.251Z | VM 2/3] CONTRACT REQ-014 -> complete: All source committed at repo root (node_modules, .next, out ignored)
+- [2026-10-10T09:06:26.075Z | VM 2/3] CONTRACT REQ-015 -> complete: Exactly 10 images total (5 real + 5 AI-generated) committed
+- [2026-10-10T09:06:36.853Z | VM 2/3] CONTRACT REQ-016 -> complete: 10 raster images in public/images/ and copied to out/images/ on build
+- [2026-10-10T09:06:46.732Z | VM 2/3] CONTRACT REQ-017 -> complete: Game works fully offline - all images bundled, no runtime network calls
+- [2026-10-10T09:06:52.789Z | VM 2/3] CONTRACT REQ-018 -> complete: 5 real images from Wikimedia Commons public domain/CC0
+- [2026-10-10T09:06:58.807Z | VM 2/3] CONTRACT REQ-019 -> complete: Wikimedia Commons PD/CC0 and Unsplash-licensed assets for real images
+- [2026-10-10T09:07:08.051Z | VM 2/3] CONTRACT REQ-020 -> complete: CREDITS.md in public/images/ and ATTRIBUTION section in README.md
+- [2026-10-10T09:08:51.054Z | VM 2/3] VERIFIED green: npm run build 2>&1 | tail -30
+- [2026-10-10T09:09:00.952Z | VM 2/3] VERIFIED green: npm run test 2>&1
+- [2026-10-10T09:10:39.058Z | VM 2/3] RELAY checkpoint at step 172 — handoff committed, VM 3 continues.

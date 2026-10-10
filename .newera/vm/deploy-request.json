@@ -1,0 +1,7 @@
+{
+  "subdomain": "guessthefake",
+  "mode": "permanent",
+  "build_output": "out",
+  "job": "vm-mv24xkvo-ci8g79my",
+  "at": "2026-10-10T09:02:03.651Z"
+}
